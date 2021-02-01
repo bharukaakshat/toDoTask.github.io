@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List JAvascript</title>
+    <link rel="stylesheet" href="list_css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.1/css/all.min.css" integrity="sha512-9my9Mb2+0YO+I4PUCSwUYO7sEK21Y0STBAiFEYoWtd2VzLEZZ4QARDrZ30hdM1GlioHJ8o8cWQiy8IAb1hy/Hg==" crossorigin="anonymous" />
+    
+</head>
+<body>
+    <div class="container" >
+        <h1 class="head">To Do Today</h1>
+        <input type="text" name="text" id="data" placeholder="Title...."><button class="addbtn" id="btn" type="submit" ><i class="fas fa-plus"></i></button></input> 
+    </div>
+
+    <div class="to-do-list">
+        <ul id="main_ul">
+            
+        </ul>
+            
+    </div>
+    <span class="msg">Press Right on the task to delete</span><br>
+    <span class="msg">Made by Akshat Bharuka</span>
+</body>
+
+<!-- Adding Javscript part  -->
+<script>
+
+    var btn = document.getElementsByClassName('addbtn')
+    document.getElementById('btn').addEventListener("click",addData);
+
+    var data = document.getElementById('data').value;
+    
+
+    // for (var i = 0; i < li.length; i++) {
+    //     var span = document.createElement("SPAN");
+    //     var txt = document.createTextNode("\u00D7");
+    //     span.className = "close";
+    //     span.appendChild(txt);
+    //     li.appendChild(span);
+    //     console.log(span)
+    // }
+
+ 
+    function addData(){
+        
+        var data = document.getElementById('data').value;
+        var ul = document.getElementById("main_ul");
+
+        if(data != ""){
+            var to_dos = document.createElement("li");
+            to_dos.innerText = data;
+            to_dos.classList.add("to-dos");
+            ul.appendChild(to_dos);
+
+            to_dos.addEventListener("contextmenu", (e)=>{
+                e.preventDefault();
+
+                to_dos.remove();
+
+            });
+
+            to_dos.addEventListener("click", (e)=>{
+                e.preventDefault();
+
+                to_dos.classList.toggle("cross");
+            });
+            
+        }
+
+        document.getElementById('data').value = "";
+        
+    }
+
+    
+
+
+    
+</script>
+
+</html>
